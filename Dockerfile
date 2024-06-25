@@ -13,6 +13,8 @@ RUN export OLLAMA_HOST=0.0.0.0:8000
 
 RUN ollama serve
 
+RUN ollama pull dolphin-mixtral
+
 EXPOSE 8000
 
 RUN chmod +x /app/start.sh
