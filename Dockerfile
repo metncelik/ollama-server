@@ -14,13 +14,13 @@ ARG MODEL \
 ENV MODEL=${MODEL} \
     MODELFILE=${MODELFILE}
 
-RUN echo ${MODELFILE} > "Modelfile"
+RUN echo -e ${MODELFILE} | sed 's/\\n/\n/g' > "Modelfile"
 
 #download & create model
 RUN ollama serve & \
     (sleep 5 && \
     ollama pull ${MODEL} &&  \
-    ollama create custom-${MODEL} && false) \
+    ollama create custom-${MODEL} && false) \x
     || true
 
 EXPOSE 8000
