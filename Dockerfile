@@ -20,7 +20,7 @@ RUN echo -e ${MODELFILE} | sed 's/\\n/\n/g' > "Modelfile"
 RUN ollama serve & \
     (sleep 5 && \
     ollama pull ${MODEL} &&  \
-    ollama create custom-${MODEL} && false) \x
+    ollama create custom-${MODEL} && false) \
     || true
 
 EXPOSE 8000
