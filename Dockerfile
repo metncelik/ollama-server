@@ -5,18 +5,16 @@ ENV PIP_PREFER_BINARY=1 \
 
 WORKDIR /app
 
-COPY . .
+COPY ./src .
 
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
 RUN export OLLAMA_HOST=0.0.0.0:8000
 
-RUN ollama serve
-
-RUN ollama pull dolphin-mixtral
+RUN chmod +x download-model.sh && \
+    ./download-model.sh
 
 EXPOSE 8000
 
-RUN chmod +x /app/start.sh
-CMD ["/app/start.sh"]
-
+RUN chmod +x start.sh
+CMD ["start.sh"]
