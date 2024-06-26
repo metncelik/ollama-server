@@ -9,8 +9,19 @@ COPY ./src .
 
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
-RUN chmod +x download-model.sh && \
-    ./download-model.sh
+ARG MODEL \
+    MODELFILE
+ENV MODEL=${MODEL} \
+    MODELFILE=${MODELFILE}
+
+RUN echo ${MODELFILE} > "Modelfile"
+
+#download & create model
+RUN ollama serve & \
+    (sleep 5 && \
+    ollama pull ${MODEL} &&  \
+    ollma create ${MODEL}--custom && false) \
+    || true
 
 EXPOSE 8000
 
