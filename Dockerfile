@@ -9,8 +9,6 @@ COPY ./src .
 
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
-RUN export OLLAMA_HOST=0.0.0.0:8000
-
 RUN chmod +x download-model.sh && \
     ./download-model.sh
 
