@@ -23,6 +23,8 @@ RUN ollama serve & \
     ollama create custom-${MODEL} && false) \
     || true
 
+RUN pip install -r requirements.txt
+
 EXPOSE 8000
 
 RUN chmod +x start.sh
