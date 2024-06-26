@@ -20,7 +20,7 @@ RUN echo ${MODELFILE} > "Modelfile"
 RUN ollama serve & \
     (sleep 5 && \
     ollama pull ${MODEL} &&  \
-    ollma create ${MODEL}--custom && false) \
+    ollama create custom-${MODEL} && false) \
     || true
 
 EXPOSE 8000
