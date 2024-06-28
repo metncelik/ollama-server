@@ -36,7 +36,7 @@ def run_inference(params):
     response = req_client.post(
         f"{OLLAMA_BASE}/api/chat",
         json=body,
-        timeout=200
+        timeout=40
     )
     
     if response.status_code == 200:
